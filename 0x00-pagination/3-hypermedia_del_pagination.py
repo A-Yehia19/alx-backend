@@ -40,6 +40,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """function doc"""
         data = self.indexed_dataset()
         assert index is not None and index >= 0 and index <= max(data.keys())
         page_data = []

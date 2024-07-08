@@ -33,6 +33,7 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """function doc"""
         assert type(page) == int and type(page_size) == int
         assert page > 0 and page_size > 0
 
@@ -45,13 +46,14 @@ class Server:
         return dataset[start:end]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+        """function doc"""
         dataset = self.dataset()
         total_pages = math.ceil(len(dataset)/page_size)
         next = page + 1
         prev = page - 1
         if (page == total_pages):
             next = None
-        if (page == 0):
+        if (page == 1):
             prev = None
 
         return {
