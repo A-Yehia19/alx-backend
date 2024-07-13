@@ -16,8 +16,10 @@ class MRUCache(BaseCaching):
             return
 
         if len(self.order) == self.MAX_ITEMS and key not in self.order:
-            print("DISCARD: " + str(self.order[0]))
-            self.order.pop(0)
+            old_key = self.order[0]
+            print("DISCARD: " + str(old_key))
+            del self.cache_data[old_key]
+            self.order.pop()
 
         if key in self.order:
             self.order.remove(key)
@@ -29,4 +31,6 @@ class MRUCache(BaseCaching):
         """ get item from chace """
         if key is None or key not in self.cache_data.keys():
             return None
+        self.order.remove(key)
+        self.order.append(key)
         return self.cache_data[key]
