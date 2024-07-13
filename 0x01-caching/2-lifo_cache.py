@@ -7,7 +7,8 @@ BaseCaching = __import__('base_caching').BaseCaching
 class LIFOCache(BaseCaching):
     """ LIFO Cache class """
     def __init__(self):
-        """ constructor """
+        """ intialize empty cache
+        """
         super().__init__()
         self.stack = LifoQueue(maxsize=self.MAX_ITEMS)
 
