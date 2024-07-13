@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""module doc"""
+"""First-In First-Out caching module.
+"""
 from queue import LifoQueue
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """ LIFO Cache class """
+    """Represents an object that allows storing and
+    retrieving items from a dictionary with a FIFO
+    removal mechanism when the limit is reached.
+    """
     def __init__(self):
         """Initializes the cache.
         """
