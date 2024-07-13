@@ -19,6 +19,7 @@ class FIFOCache(BaseCaching):
         if self.queue.full():
             old_key = self.queue.get()
             del self.cache_data[old_key]
+            print("DISCARD:" + str(old_key))
         self.queue.put(key)
         self.cache_data[key] = item
 
