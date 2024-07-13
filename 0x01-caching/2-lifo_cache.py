@@ -7,7 +7,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 class LIFOCache(BaseCaching):
     """ LIFO Cache class """
     def __init__(self):
-        """ constructor """
+        """ constructor of the object """
         super().__init__()
         self.stack = LifoQueue(maxsize=self.MAX_ITEMS)
 
@@ -16,11 +16,11 @@ class LIFOCache(BaseCaching):
         if key is None or item is None:
             return
 
-        if self.queue.full():
-            old_key = self.queue.get()
+        if self.stack.full():
+            old_key = self.stack.get()
             del self.cache_data[old_key]
             print("DISCARD: " + str(old_key))
-        self.queue.put(key)
+        self.stack.put(key)
         self.cache_data[key] = item
 
     def get(self, key):
