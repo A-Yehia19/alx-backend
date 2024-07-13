@@ -7,13 +7,14 @@ BaseCaching = __import__('base_caching').BaseCaching
 class LIFOCache(BaseCaching):
     """ LIFO Cache class """
     def __init__(self):
-        """ intialize empty cache
+        """Initializes the cache.
         """
         super().__init__()
         self.stack = LifoQueue(maxsize=self.MAX_ITEMS)
 
     def put(self, key, item):
-        """ put item in cache """
+        """Adds an item in the cache.
+        """
         if key is None or item is None:
             return
 
@@ -25,7 +26,8 @@ class LIFOCache(BaseCaching):
         self.cache_data[key] = item
 
     def get(self, key):
-        """ get item from chace """
+        """Retrieves an item by key.
+        """
         if key is None or key not in self.cache_data.keys():
             return None
         return self.cache_data[key]
