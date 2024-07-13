@@ -1,37 +1,29 @@
 #!/usr/bin/env python3
-"""First-In First-Out caching module.
-"""
-from queue import LifoQueue
+"""module doc"""
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """Represents an object that allows storing and
-    retrieving items from a dictionary with a FIFO
-    removal mechanism when the limit is reached.
-    """
+    """ LIFO Cache class """
     def __init__(self):
-        """Initializes the cache.
-        """
+        """ constructor """
         super().__init__()
-        self.stack = LifoQueue(maxsize=self.MAX_ITEMS)
+        self.stack = []
 
     def put(self, key, item):
-        """Adds an item in the cache.
-        """
+        """ put item in cache """
         if key is None or item is None:
             return
 
-        if self.stack.full():
-            old_key = self.stack.get()
+        if len(self.stack) == self.MAX_ITEMS:
+            old_key = self.stack.pop()
             del self.cache_data[old_key]
             print("DISCARD: " + str(old_key))
-        self.stack.put(key)
+        self.stack.append(key)
         self.cache_data[key] = item
 
     def get(self, key):
-        """Retrieves an item by key.
-        """
+        """ get item from chace """
         if key is None or key not in self.cache_data.keys():
             return None
         return self.cache_data[key]
