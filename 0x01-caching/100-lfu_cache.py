@@ -23,15 +23,15 @@ class LFUCache(BaseCaching):
             min_key = items[0][0]
             min_val = items[0][1]
 
-            for key, val in items:
-                if val < min_val:
-                    min_val = val
-                    min_key = key
+            for item_key, item_val in items:
+                if item_val < min_val:
+                    min_val = item_val
+                    min_key = item_key
 
             del self.cache_data[min_key]
             del self.freq[min_key]
 
-            self.freq[key] = 0
+            self.freq[key] = 1
             self.cache_data[key] = item
             print("DISCARD: " + str(min_key))
 
