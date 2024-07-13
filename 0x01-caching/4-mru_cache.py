@@ -19,11 +19,11 @@ class MRUCache(BaseCaching):
             print("DISCARD: " + str(self.order[0]))
             self.order.pop(0)
 
-        try:
+        if key in self.order:
             self.order.remove(key)
-        finally:
-            self.order.append(key)
-            self.cache_data[key] = item
+
+        self.order.append(key)
+        self.cache_data[key] = item
 
     def get(self, key):
         """ get item from chace """
